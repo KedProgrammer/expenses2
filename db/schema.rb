@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171025045326) do
+ActiveRecord::Schema.define(version: 20171025164652) do
 
   create_table "categoryes", force: :cascade do |t|
     t.string   "name"
@@ -22,14 +22,15 @@ ActiveRecord::Schema.define(version: 20171025045326) do
   create_table "expenses", force: :cascade do |t|
     t.string   "concept"
     t.integer  "amount"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.string   "imageable_type"
-    t.integer  "imageable_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.date     "date"
+    t.integer  "type_id"
+    t.integer  "categorye_id"
   end
 
-  add_index "expenses", ["imageable_type", "imageable_id"], name: "index_expenses_on_imageable_type_and_imageable_id"
+  add_index "expenses", ["categorye_id"], name: "index_expenses_on_categorye_id"
+  add_index "expenses", ["type_id"], name: "index_expenses_on_type_id"
 
   create_table "types", force: :cascade do |t|
     t.string   "name"

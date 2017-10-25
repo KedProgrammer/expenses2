@@ -1,3 +1,3 @@
 class Type < ApplicationRecord
-	has_many :expenses, as: :imageable 
+	has_many :expenses
 end
