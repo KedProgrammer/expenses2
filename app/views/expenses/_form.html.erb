@@ -1,0 +1,49 @@
+    
+
+  
+
+  <div class="modal-body">                                              
+    <div class="container-fluid">
+      <%= form_for (@expense), remote: true do |f|   %>
+       
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <%= f.label 'Type', for: 'sel1' %>
+                <select class="form-control" id="sel1">
+                  <% @types.each do |t| %>
+                  <option><%= t.name %></option>
+                  <% end %>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+               <%= f.label 'Date' %>
+              <%= f.text_field :date, class: 'form-control' , placeholder: @today%>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Concept' %>
+            <%= f.text_field :concept, class: 'form-control'%>
+          </div>
+       
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <%= f.label 'Category', for: 'sel2' %>
+                  <select class="form-control" id="sel2">
+                    <% @categories.each do |t| %>
+                    <option><%= t.name %></option>
+                    <% end %>
+                  </select>
+            </div>
+            <div class="form-group col-md-6">
+                <%= f.label 'Amount' %>
+                <%= f.text_field :amount, class: 'form-control'%>
+            </div>
+          </div>
+        
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+           <%= f.submit :expense, class:'btn btn-primary boton-login' %>
+          </div>
+      <% end %>                               
+    </div>
+  </div>

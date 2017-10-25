@@ -1,0 +1,20 @@
+@import "bootstrap-sprockets";
+@import "theme";
+@import "bootstrap";
+@import "bootstrap-modal";
+@import "dashboard";
+@import "expenses";
+
+.navbar-inverse {
+  border: 0;
+  margin-bottom: 40px;
+}
+
+// add this class to alerts to fix their position
+.alert-growl {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  max-width: 500px;
+  z-index: 1000;
+}
