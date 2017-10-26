@@ -1,0 +1,12 @@
+<div class="errors">
+  <div class="alert alert-danger">
+          El formulario contiene <%= pluralize(@expense.errors.count,"error") %>
+  </div>
+    <div>
+      <% @expense.errors.full_messages.each do |f| %>
+        <ul>
+          <li><%= f %></li>
+        </ul>
+      <% end %>
+    </div>
+</div>

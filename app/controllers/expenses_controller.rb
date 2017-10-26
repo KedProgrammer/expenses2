@@ -1,8 +1,12 @@
 class ExpensesController < ApplicationController
-	
+
   def index
     @tab = :expenses
     @expenses = Expense.all
+    @categories = Categorye.all
+    @types = Type.all
+    @active = params["category_id"]
+    
   end
 
 
@@ -11,25 +15,25 @@ class ExpensesController < ApplicationController
   	@categories = Categorye.all
   	@types = Type.all
   	@today = Date.today
-  	respond_to do |format|
-		    format.html
-		    format.js
-  		end
+  
   	
   end
 
 
   def create
+  	
   	@expense = Expense.new(expense_params)
   	if @expense.save 
-  		respond_to do |format|
-		    format.html
-		    format.js
-  		end
+  		@expenses = Expense.all
+  		category = Categorye.find(params[:Category])
+  		type = Type.find(params[:Type])
+  		category.expenses << @expense
+  		type.expenses << @expense
   	end
+  
   end
 
   def expense_params
- 	params.require(:expense).permit(:amount,:date,:concept,:category, :type)
+ 	params.require(:expense).permit(:amount,:date,:concept,:type, :category)
   end
 end

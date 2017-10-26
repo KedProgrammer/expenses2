@@ -4,15 +4,19 @@
     <div class="col-md-3">
       <h4 class="filter-header">Transaction Type <span>Choose to filter</span></h4>
       <div class="list-group filter-type">
-        <a href="#" class="list-group-item">Purchase</a>
-        <a href="#" class="list-group-item">Withdrawal</a>
+      <% @types.each do |t| %>
+    
+        <%= link_to t.name , expenses_path(:type_id => t.id), :class => "list-group-item" %>
+      <% end %>
         <!-- more transaction types -->
       </div>
 
       <h4 class="filter-header">Categoría <span>Selecciona para filtrar</span></h4>
       <div class="list-group filter-type">
-        <a href="#" class="list-group-item">Restaurants</a>
-        <a href="#" class="list-group-item">Car</a>
+         <% @categories.each do |t| %>
+    
+        <%= link_to t.name , expenses_path(request.query_parameters.merge({:per_page => 20})),:class => "list-group-item" , :id => t.id %>
+      <% end %>
         <!-- more categories  -->
       </div>
     </div>

@@ -1,0 +1,7 @@
+
+<% @categories.each do |d| %>
+	$('#<%= d.id %>').removeClass('active')
+	<% if d.id.to_s == @active %>
+		$('#<%= @active %>').addClass('active')
+	<% end %>
+<% end %>

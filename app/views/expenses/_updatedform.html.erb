@@ -1,0 +1,23 @@
+ <% @expenses.each do |t| %>
+           <tr>
+            <td class="date">
+              <div class="day">24</div>
+              <div class="month">Apr</div>
+            </td>
+            <td>
+              <div>
+                <span class="type">Purchase</span>
+              </div>
+              <div>
+                <span class="concept"><%= t.concept %></span>
+              </div>
+            </td>
+            <td class="category text-right">Restauratns</td>
+            <td class="text-right" style="width: 170px;">
+              <div class="amount"><%= t.amount %></div>
+              <div class="actions">
+                <a href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                <a href="#"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+            </td>
+          </tr>
+<% end %>
