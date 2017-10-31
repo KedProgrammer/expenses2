@@ -1,4 +1,5 @@
 class Expense < ApplicationRecord
+	
 	belongs_to :type, optional: true
 	belongs_to :categorye, optional: true
 

@@ -1,18 +1,20 @@
  <% @expenses.each do |t| %>
            <tr>
             <td class="date">
-              <div class="day">24</div>
-              <div class="month">Apr</div>
+               <div class="day"><%= t.date.mday %></div>
+              <div class="month"><%= t.date.strftime('%b') %></div>
             </td>
             <td>
               <div>
-                <span class="type">Purchase</span>
+                   <% type = Type.find(t.type_id) %>
+                <span class="type"><%= type.name %></span>
               </div>
               <div>
                 <span class="concept"><%= t.concept %></span>
               </div>
             </td>
-            <td class="category text-right">Restauratns</td>
+              <% category = Categorye.find(t.categorye_id) %>
+            <td class="category text-right"><%= category.name %></td>
             <td class="text-right" style="width: 170px;">
               <div class="amount"><%= t.amount %></div>
               <div class="actions">

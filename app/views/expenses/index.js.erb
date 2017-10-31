@@ -1,15 +1,1 @@
-
-<% @categories.each do |d| %>
-	$('#<%= d.id %>').removeClass('active')
-	<% if d.id.to_s == @active %>
-		if ($('#<%= @active %>').hasClass('active')){
-
-			$('#<%= @active %>').removeClass('active')
-		}
-		else {
-			$('#<%= @active %>').addClass('active')
-
-		}
-		
-	<% end %>
-<% end %>
+$('tbody').html("<%= j (render 'updatedform') %>")

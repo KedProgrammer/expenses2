@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171025164652) do
+ActiveRecord::Schema.define(version: 20171031025710) do
 
   create_table "categoryes", force: :cascade do |t|
     t.string   "name"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20171025164652) do
     t.date     "date"
     t.integer  "type_id"
     t.integer  "categorye_id"
+    t.string   "type"
   end
 
   add_index "expenses", ["categorye_id"], name: "index_expenses_on_categorye_id"
