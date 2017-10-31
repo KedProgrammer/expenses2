@@ -6,7 +6,7 @@
       <div class="list-group filter-type1">
       <% @types.each do |t| %>
     
-        <%= link_to t.name , "" , :class => "list-group-item" , :id => t.id%>
+        <div class="list-group-item" id=<%= t.id %>><%= t.name %></div>
       <% end %>
         <!-- more transaction types -->
       </div>
@@ -16,7 +16,7 @@
          <% @categories.each do |t| %>
     
        
-        <%= link_to t.name , "" , :class => "list-group-item" , :id => t.id%>
+               <div class="list-group-item" id=<%= t.id %>> <%= t.name %> </div>
       <% end %>
         <!-- more categories  -->
       </div>
