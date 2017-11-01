@@ -1,5 +1,3 @@
-
-
 <% if @expense.errors.any? %>
 	$('.errors').remove()
 	$('.container-fluid').prepend("<%= j (render 'errors') %>")

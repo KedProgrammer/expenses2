@@ -1,8 +1,8 @@
   $(document).ready(function(){
-    var params = ["", "", "" , ""]
+    var params = ["", "", "" , "", ""]
      class Filter{
     constructor(array){
-    $('.dropdown-menu').on('click', 'li', this.prueba1)
+    $('ul.dropdown-menu').on('click', 'li', this.prueba1)
     $('.filter-type1').on('click', 'div' ,  this.filter_type)
     $('.filter-type2').on('click', 'div', this.filter_category)
     }
@@ -14,6 +14,7 @@
   params[2]= "&year=" + id.split('-')[0];
   params[3]= "&month=" + id.split('-')[1];
   params[4] = "&date=" +  id;
+  $("#date-selector").text(id).append(' <span class="caret"></span>');
   query.send_query(params);
   query.put_url(params);
 

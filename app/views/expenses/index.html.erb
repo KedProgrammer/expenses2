@@ -22,17 +22,17 @@
       </div>
     </div>
     <div class="col-md-9 index-data">
-      <div class="row" style="margin-top: 10px;">
+      <div class="row index" style="margin-top: 10px;">
         <div class="summary-box col-md-4 text-center">
-          <div class="summary-value">$2,500,000</div>
+          <div class="summary-value"><%= Money.new(@dates['total'].to_i*100, "USD").format(:no_cents =>true ) %></div>
           <div class="summary-label">Total</div>
         </diV>
         <div class="summary-box col-md-4 text-center">
-          <div class="summary-value">2</div>
+          <div class="summary-value"><%= @dates['transactions'] %></div>
           <div class="summary-label">Transactions</div>
         </div>
         <div class="summary-box col-md-4 text-center">
-          <div class="summary-value">$1,000,000</div>
+          <div class="summary-value"><%= Money.new(@dates['average'].to_i*100, "USD").format(:no_cents =>true ) %></div>
           <div class="summary-label">Average</div>
         </div>
       </div>
@@ -40,8 +40,8 @@
       <div class="row" style="margin-top: 20px;">
         <div class="col-md-12">
                 <%= link_to new_expense_path , remote: true , :class => "btn btn-success pull-left"  do %>
-              New Expense
               <span class="glyphicon glyphicon-plus"></span>
+              New Expense
                <% end %>
 
 
@@ -60,11 +60,11 @@
                       </div>
         
           <h4 class="dropdown pull-right">
-            <button type="button" class="dropdown-toggle btn btn-link" data-toggle="dropdown"><%= Date.today %> <span class="caret"></span></button>
+            <button id="date-selector" type="button" class="dropdown-toggle btn btn-link" data-toggle="dropdown"><%= Date.today.strftime('%b-%Y') %> <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
              
               <% @months.each do |m| %>
-             <li id=<%= m %> role="presentation"><div><%= m.strftime('%b %Y') %></div></li>
+             <li id=<%= m.strftime('%b-%Y') %> role="presentation"><div><%= m.strftime('%b-%Y') %></div></li>
             <% end %>
               <!-- more months -->
             </ul>
@@ -100,10 +100,17 @@
              <% category = Categorye.find(t.categorye_id) %>
             <td class="category text-right"><%= category.name %></td>
             <td class="text-right" style="width: 170px;">
-              <div class="amount"><%= t.amount %></div>
+              <div class="amount"><%= Money.new(t.amount*100, "USD").format(:no_cents => true) %></div>
               <div class="actions">
-                <a href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                <a href="#"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                <%= link_to edit_expense_path(t), remote: true  do  %>
+                <span class="glyphicon glyphicon-edit"></span>
+                Edit
+                <% end %>
+                 <%= link_to t, method: :delete, data: {confirm: "Are you sure!"},  remote: true  do  %>
+                <span class="glyphicon glyphicon-edit"></span>
+                Delete
+                <% end %>
+              </div>
             </td>
           </tr>
          <% end %>
@@ -114,5 +121,4 @@
 
 
 </div>
-
 

@@ -1,25 +1,32 @@
- <% @expenses.each do |t| %>
+<% @expenses.each do |t| %>
            <tr>
             <td class="date">
-               <div class="day"><%= t.date.mday %></div>
+              <div class="day"><%= t.date.mday %></div>
               <div class="month"><%= t.date.strftime('%b') %></div>
             </td>
             <td>
               <div>
-                   <% type = Type.find(t.type_id) %>
+              <% type = Type.find(t.type_id) %>
                 <span class="type"><%= type.name %></span>
               </div>
               <div>
                 <span class="concept"><%= t.concept %></span>
               </div>
             </td>
-              <% category = Categorye.find(t.categorye_id) %>
+             <% category = Categorye.find(t.categorye_id) %>
             <td class="category text-right"><%= category.name %></td>
             <td class="text-right" style="width: 170px;">
-              <div class="amount"><%= t.amount %></div>
+              <div class="amount"><%= Money.new(t.amount*100, "USD").format(:no_cents =>true ) %></div>
               <div class="actions">
-                <a href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                <a href="#"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                <%= link_to edit_expense_path(t), remote: true  do  %>
+                <span class="glyphicon glyphicon-edit"></span>
+                Edit
+                <% end %>
+                  <%= link_to t, method: :delete, data: {confirm: "Are you sure!"},  remote: true  do  %>
+                <span class="glyphicon glyphicon-edit"></span>
+                Delete
+                <% end %>
+              </div> 
             </td>
           </tr>
-<% end %>
+         <% end %>

@@ -1,0 +1,12 @@
+ <div class="summary-box col-md-4 text-center">
+          <div class="summary-value"><%= Money.new(@dates['total'].to_i*100, "USD").format(:no_cents =>true ) %></div>
+          <div class="summary-label">Total</div>
+        </diV>
+        <div class="summary-box col-md-4 text-center">
+          <div class="summary-value"><%= @dates['transactions'] %></div>
+          <div class="summary-label">Transactions</div>
+        </div>
+        <div class="summary-box col-md-4 text-center">
+          <div class="summary-value"><%= Money.new(@dates['average'].to_i*100, "USD").format(:no_cents =>true ) %></div>
+          <div class="summary-label">Average</div>
+        </div>

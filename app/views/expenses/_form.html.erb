@@ -34,7 +34,7 @@
         
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-           <%= f.submit :expense, class:'btn btn-primary boton-login' %>
+           <%= f.submit @expense.new_record? ? "New Expense" : "Edit expense", class:'btn btn-primary boton-login' %>
           </div>
       <% end %>                               
     </div>
