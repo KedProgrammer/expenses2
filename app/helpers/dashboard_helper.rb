@@ -119,4 +119,24 @@ module DashboardHelper
 	
 		total_acumulate
  	end
+
+
+ 	def get_data
+ 		acumulates = {}
+ 		acumulates["day"] = sum(Expense.where("cast(strftime('%d', date) as int) = ?  AND cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?  ", Date.today.mday , Date.today.mon , Date.today.year ))
+ 		acumulates["last-day"] = sum(Expense.where("cast(strftime('%d', date) as int) = ?  AND cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?  ", Date.today.mday - 1 , Date.today.mon , Date.today.year ))
+ 		acumulates["this-month"] = sum(Expense.where("cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?  ", Date.today.mon , Date.today.year ))
+ 		acumulates["last-month"] = sum(Expense.where("cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?  ", Date.today.mon  - 1, Date.today.year ))
+ 		acumulates
+ 		
+ 	end
+
+ 	def sum(array)
+ 		sum = 0
+ 		array.each do |a|
+			sum += a.amount
+		end	
+		sum
+ 	end
+ 
 end

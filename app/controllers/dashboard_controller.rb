@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
   def index
+    @dates = get_data
   	@categorys_by_day = my_month
     @categorys_by_months = my_months
     @total_categorys = my_categorys

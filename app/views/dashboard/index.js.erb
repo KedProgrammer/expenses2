@@ -1,3 +1,11 @@
+
+$("#today").text("<%= Money.new(@dates["day"].to_i*100, "USD").format(:no_cents =>true )%> ").append("  <span>HOY</span>")
+$("#last-day").text("<%=  Money.new(@dates["last-day"].to_i*100, "USD").format(:no_cents =>true )%> ").append("  <span>AYER</span>")
+$("#this-month").text("<%=  Money.new(@dates["this-month"].to_i*100, "USD").format(:no_cents =>true )%> ").append("  <span>ESTE MES</span>")
+$("#last-month").text("<%=  Money.new(@dates["last-month"].to_i*100, "USD").format(:no_cents =>true )%> ").append("  <span>MES PASADO</span>")
+
+
+
 var chart = new CanvasJS.Chart("chartContainer",
   {
     backgroundColor: "#33373a",

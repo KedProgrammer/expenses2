@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'responders'
 gem 'bootstrap-modal-rails'
 gem 'money'
+gem 'faker',          '1.7.3'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

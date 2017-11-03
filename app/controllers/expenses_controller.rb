@@ -27,8 +27,8 @@ before_action :filter, :months,  only: :index
   	
   	@expense = Expense.new(expense_params)
   	if @expense.save 
-  		category = Categorye.find(params[:Category])
-  		type = Type.find(params[:Type])
+  		category = Categorye.find(params["expense"]["categorye_id"])
+  		type = Type.find(params["expense"]["type_id"])
   		category.expenses << @expense
   		type.expenses << @expense
       @expenses = filter2
