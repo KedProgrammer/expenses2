@@ -1,27 +1,127 @@
-
-var chart = new CanvasJS.Chart("chartContainer", {
-  theme: "light1", // "light2", "dark1", "dark2"
-  animationEnabled: false, // change to true    
-  title:{
-    text: "Basic Column Chart"
-  },
-  data: [
+var chart = new CanvasJS.Chart("chartContainer",
   {
-    // Change type to "bar", "area", "spline", "pie",etc.
-    type: "column",
-    dataPoints: [
-      { label: "pene",  y: 10  },
-      { label: "vagina", y: 15  },
-      { label: "banana", y: 25  },
-      { label: "mango",  y: 30  },
-      { label: "grape",  y: 28  }
+    backgroundColor: "#33373a",
+   animationEnabled: true,
+    legend: {
+       fontColor: "white"
+     },
+       axisY:{
+        labelFontColor: "white"
+      },
+    data: [
+      <% @categorys_by_day.each do |d| %>
+        {
+      type: "stackedColumn" ,
+      legendText: "<%= d["type"] %>",
+      showInLegend: "true",
+      titleFontColor: "white",
+      dataPoints: [
+        <% d["days"].each do |e| %>
+            {  y: <%= e["amount"] %> , label: "<%= e["day"] %>" },
+        <% end %>
+      ]
+    },    
+      <% end %>
     ]
-  }
+  });
+  chart.render();
+
+
+
+
+var chart2 = new CanvasJS.Chart("expenses-chart",
+  {
+    backgroundColor: "#33373a",
+   animationEnabled: true,
+    legend: {
+       fontColor: "white"
+     },
+       axisY:{
+        labelFontColor: "white"
+      },
+
+    data: [
+      <%  @categorys_by_months.each do |d| %>
+        {
+      type: "stackedColumn" ,
+      legendText: "<%= d["type"] %>",
+      showInLegend: "true",
+      titleFontColor: "white",
+      dataPoints: [
+        <% d["months"].each do |e| %>
+            {  y: <%= e["amount"] %> , label: "<%= e["month"] %>" },
+        <% end %>
+      ]
+    },    
+      <% end %>
+    ]
+  });
+  chart2.render();
+
+
+  var chart3 = new CanvasJS.Chart("category-chart",
+    {
+      backgroundColor: "#33373a",
+    animationEnabled: true,
+      title:{
+        fontFamily: "Impact",
+        fontWeight: "normal"
+      },
+
+      legend:{
+        verticalAlign: "bottom",
+        horizontalAlign: "center"
+      },
+      data: [
+      {
+        //startAngle: 45,
+       indexLabelFontSize: 20,
+       indexLabelFontFamily: "Garamond",
+       indexLabelFontColor: "darkgrey",
+       indexLabelLineColor: "darkgrey",
+       indexLabelPlacement: "outside",
+       type: "doughnut",
+       showInLegend: true,
+       dataPoints: [
+        <% @total_categorys.each do |c| %>
+          {  y: <%=  c["amount"] %>, legendText: "<%= c["category"] %>", indexLabel: "<%= c["category"] %>" },
+        <% end %>
+       ]
+     }
+     ]
+   });
+
+    chart3.render();
+
+
+
+
+
+    var chart = new CanvasJS.Chart("month-acc", {
+  animationEnabled: true,
+   backgroundColor: "#33373a",
+    legend: {
+       fontColor: "white"
+     },
+ 
+  data: [
+
+    <% @acumulate.each do |m|  %>
+      {        
+    type: "stackedArea",
+    showInLegend: true,
+    
+    name: "<%= m["type"] %>",
+    dataPoints: [
+      <% m["days"].each do |d| %>
+        { x: <%= d["day"] %>, y: <%= d["amount"] %> },
+      <% end %>
+    ]
+  },
+    <% end %>
+
   ]
 });
 chart.render();
-
-
-
 
 

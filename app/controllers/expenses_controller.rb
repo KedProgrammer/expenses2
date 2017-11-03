@@ -112,6 +112,7 @@ before_action :filter, :months,  only: :index
 
 
   def update
+   
     @expense = Expense.find(params[:id])
     if @expense.update_attributes(expense_params)
      @categories = Categorye.all
@@ -138,7 +139,7 @@ before_action :filter, :months,  only: :index
     today = Date.today
     @months = Array.new
     13.times do |m|
-      @months[m] = today - m*31
+      @months[m] = today - m*29
     end
   end
 
@@ -146,7 +147,7 @@ before_action :filter, :months,  only: :index
 
 
   def expense_params
- 	params.require(:expense).permit(:amount,:date,:concept,:type, :category)
+ 	params.require(:expense).permit(:amount,:date,:concept,:type_id, :categorye_id)
   end
 
 

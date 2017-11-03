@@ -9,11 +9,11 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <%= f.label 'Type', for: 'sel1' %>
-                <%= select_tag 'Type' ,options_for_select(@types.collect{|c| [c.name, c.id ]}), {:class => 'form-control'}%>
+                <%= f.select :type_id ,options_for_select(@types.collect{|c| [c.name, c.id ]}, :selected => @expense.type.id),{},{:class => 'form-control'}%>
             </div>
             <div class="form-group col-md-6">
                <%= f.label 'Date' %>
-              <%= f.text_field :date, class: 'form-control' , value: @today%>
+              <%= f.text_field :date, class: 'form-control' , value: @expense.new_record? ? Date.today : @expense.date  %>
             </div>
           </div>
           <div class="form-group">
@@ -24,7 +24,7 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <%= f.label 'Category', for: 'sel2' %>
-                  <%= select_tag 'Category' ,options_for_select(@categories.collect{|c| [c.name, c.id ]}), {:class => 'form-control'}%>
+                  <%= f.select :categorye_id ,options_for_select(@categories.collect{|c| [c.name, c.id ]}, :selected => @expense.categorye.id), {} ,{:class => 'form-control'}%>
             </div>
             <div class="form-group col-md-6">
                 <%= f.label 'Amount' %>
