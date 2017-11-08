@@ -3,7 +3,9 @@
 one:
   concept: MyString
   amount: 1
+  date: 2017-11-10
 
 two:
   concept: MyString
   amount: 1
+  date: ""

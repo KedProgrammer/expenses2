@@ -90,15 +90,15 @@
             </td>
             <td>
               <div>
-              <% type = Type.find(t.type_id) %>
-                <span class="type"><%= type.name %></span>
+              
+                <span class="type"><%= t.type.name %></span>
               </div>
               <div>
                 <span class="concept"><%= t.concept %></span>
               </div>
             </td>
-             <% category = Categorye.find(t.categorye_id) %>
-            <td class="category text-right"><%= category.name %></td>
+             
+            <td class="category text-right"><%= t.categorye.name %></td>
             <td class="text-right" style="width: 170px;">
               <div class="amount"><%= Money.new(t.amount*100, "USD").format(:no_cents => true) %></div>
               <div class="actions">

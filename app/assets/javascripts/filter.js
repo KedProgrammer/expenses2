@@ -2,13 +2,13 @@
     var params = ["", "", "" , "", ""]
      class Filter{
     constructor(array){
-    $('ul.dropdown-menu').on('click', 'li', this.prueba1)
+    $('ul.dropdown-menu').on('click', 'li', this.asign1)
     $('.filter-type1').on('click', 'div' ,  this.filter_type)
     $('.filter-type2').on('click', 'div', this.filter_category)
     }
 
 
-  prueba1(){
+  asign1(){
   var aux = []
   var id = $(this).attr("id"); 
   params[2]= "&year=" + id.split('-')[0];
@@ -25,11 +25,11 @@
   filter_type(){
     if ($(this).hasClass("active")){
       $(this).toggleClass("active");
-      query.prueba({filter_by: "type", id: "" })
+      query.asign({filter_by: "type", id: "" })
     }else{
       $('.filter-type1 div').removeClass("active")
       $(this).addClass("active")
-      query.prueba({filter_by: "type", id: $(this).attr("id") }) 
+      query.asign({filter_by: "type", id: $(this).attr("id") }) 
       }
   }
 
@@ -37,11 +37,11 @@
   filter_category(){
     if ($(this).hasClass("active")){
       $(this).toggleClass("active");
-        query.prueba({filter_by: "category", id: "" })
+        query.asign({filter_by: "category", id: "" })
     }else{
       $('.filter-type2 div').removeClass("active")
       $(this).addClass("active")
-       query.prueba({filter_by: "category", id: $(this).attr("id") })
+       query.asign({filter_by: "category", id: $(this).attr("id") })
       
     }
   }
@@ -52,7 +52,7 @@
 class QueryString{
 
 
-  prueba(id){
+  asign(id){
   
     if (id.filter_by === "type"){
       if (id.id === ""){
