@@ -14,7 +14,7 @@ before_action :filter, :months,  only: :index
 
 
   def new
-    byebug
+    
   	@expense = Expense.new
   	@categories = Categorye.all
   	@types = Type.all

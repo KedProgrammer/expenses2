@@ -1,10 +1,11 @@
+
 require 'test_helper'
 
-class CreateExpenseTest < ActionDispatch::IntegrationTest
+class CreateExpenseTest < Capybara::Rails::TestCase
  	test "creating_expense" do
- 			get expenses_path
-  			get new_expense_path, xhr: true
-  		
-  			assert_select 'div.modal-body'			
+ 			visit expenses_path
+ 			click_link('New Expense')
+ 			wait_for_ajax
+ 					
  	end
 end
