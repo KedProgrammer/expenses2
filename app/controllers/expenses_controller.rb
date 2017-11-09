@@ -14,6 +14,7 @@ before_action :filter, :months,  only: :index
 
 
   def new
+    byebug
   	@expense = Expense.new
   	@categories = Categorye.all
   	@types = Type.all
@@ -26,15 +27,13 @@ before_action :filter, :months,  only: :index
   def create
   	
   	@expense = Expense.new(expense_params)
+      
   	if @expense.save 
-  		category = Categorye.find(params["expense"]["categorye_id"])
-  		type = Type.find(params["expense"]["type_id"])
-  		category.expenses << @expense
-  		type.expenses << @expense
+   
       @expenses = filter2
       @dates =  get_dates(@expenses)
-     
   	end
+
   end
 
 
@@ -71,31 +70,35 @@ before_action :filter, :months,  only: :index
   def filter2
     params = get_params
     today = Date.today
-      if params["date"]
-        if params["type"] and params["category"] 
-          @expenses = Expense.order("date DESC").where("type_id = ? AND categorye_id = ? AND cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?", params["type"], params["category"], Date.parse(params["date"]).mon, Date.parse(params["date"]).year)
-           
-          elsif params["type"] or  params["category"]
-             @expenses = Expense.where("(type_id = ? OR categorye_id = ?) AND cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?", params["type"], params["category"], Date.parse(params["date"]).mon, Date.parse(params["date"]).year)
-              
-          else
-            @expenses =  Expense.where("cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?", Date.parse(params["date"]).mon, Date.parse(params["date"]).year).order("date DESC")
+      if params 
+        if params["date"]
+          if params["type"] and params["category"] 
+            @expenses = Expense.order("date DESC").where("type_id = ? AND categorye_id = ? AND cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?", params["type"], params["category"], Date.parse(params["date"]).mon, Date.parse(params["date"]).year)
              
-        end
-
-      else
-        if params["type"] and params["category"] 
-          @expenses = Expense.order("date DESC").where("type_id = ? AND categorye_id = ? AND cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?", params["type"], params["category"], today.mon,today.year)
-          
-          elsif params["type"] or  params["category"]
-             @expenses = Expense.order("date DESC").where("(type_id = ? OR categorye_id = ?) AND cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?", params["type"], params["category"], today.mon,today.year)
-              
-          else
-            @expenses =  Expense.where("cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?", today.mon, today.year).order("date DESC")
-
+            elsif params["type"] or  params["category"]
+               @expenses = Expense.where("(type_id = ? OR categorye_id = ?) AND cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?", params["type"], params["category"], Date.parse(params["date"]).mon, Date.parse(params["date"]).year)
+                
+            else
+              @expenses =  Expense.where("cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?", Date.parse(params["date"]).mon, Date.parse(params["date"]).year).order("date DESC")
+               
           end
-      end
+
+        else
+          if params["type"] and params["category"] 
+            @expenses = Expense.order("date DESC").where("type_id = ? AND categorye_id = ? AND cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?", params["type"], params["category"], today.mon,today.year)
+            
+            elsif params["type"] or  params["category"]
+               @expenses = Expense.order("date DESC").where("(type_id = ? OR categorye_id = ?) AND cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?", params["type"], params["category"], today.mon,today.year)
+                
+            else
+              @expenses =  Expense.where("cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?", today.mon, today.year).order("date DESC")
+
+            end
+        end
      @expenses
+   else
+    @expenses = []
+  end
 
   end
 

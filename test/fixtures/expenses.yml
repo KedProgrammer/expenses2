@@ -4,8 +4,12 @@ one:
   concept: MyString
   amount: 1
   date: 2017-11-10
+  type_id: 1
+  categorye_id: 1
 
 two:
   concept: MyString
   amount: 1
-  date: ""
+  date: 2017-11-10
+  type_id: 1
+  categorye_id: 1

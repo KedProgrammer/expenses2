@@ -6,7 +6,8 @@ class ExpenseTest < ActiveSupport::TestCase
 	@expense_invalid = expenses(:two)	
  end
  test "should be invalid" do
- 	assert_not @expense_invalid.valid?
+ 	@expense.date = ""
+ 	assert_not @expense.valid?
 
  end
  test "should be valid" do
