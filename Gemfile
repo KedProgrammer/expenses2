@@ -40,6 +40,7 @@ group :test do
         gem 'shoulda', '~> 3.5'
  gem 'shoulda-matchers', '~> 2.0'
 gem "capybara-webkit"
+gem 'geckodriver-helper'
 end
 
 # Use Redis adapter to run Action Cable in production

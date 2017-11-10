@@ -15,6 +15,9 @@ class ActiveSupport::TestCase
 end
 
 class ActionDispatch::IntegrationTest
+  Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, browser: :firefox)
+end
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
   # Make `assert_*` methods behave like Minitest assertions
@@ -24,6 +27,6 @@ class ActionDispatch::IntegrationTest
   # Use super wherever this method is redefined in your individual test classes
   def teardown
     Capybara.reset_sessions!
-    	Capybara.javascript_driver = :webkit
+    	
   end
 end

@@ -85,6 +85,8 @@ GEM
       i18n (~> 0.5)
     ffi (1.9.18)
     formatador (0.2.5)
+    geckodriver-helper (0.0.4)
+      archive-zip (~> 0.7.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     guard (2.13.0)
@@ -264,6 +266,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.1.0)
   faker (= 1.7.3)
+  geckodriver-helper
   guard (= 2.13.0)
   guard-minitest (= 2.4.4)
   jbuilder (~> 2.0)
