@@ -1,11 +1,15 @@
 
 require 'test_helper'
 
-class CreateExpenseTest < Capybara::Rails::TestCase
+
+class CreateExpenseTest < ActionDispatch::IntegrationTest
+	 setup do
+    Capybara.current_driver = Capybara.javascript_driver # :selenium by default
+  end
  	test "creating_expense" do
  			visit expenses_path
- 			click_link('New Expense')
- 			wait_for_ajax
+ 			
+ 			
  					
  	end
 end
