@@ -92,8 +92,8 @@ class QueryString{
   }
 }
 
-let filter = new Filter;
-let query = new QueryString;
+var filter = new Filter;
+var query = new QueryString;
   })
 
  
