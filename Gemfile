@@ -27,20 +27,20 @@ gem 'responders'
 gem 'bootstrap-modal-rails'
 gem 'money'
 gem 'faker',          '1.7.3'
- gem 'capybara', '~> 2.13'
+gem 'capybara', '~> 2.13'
 
 group :test do
   gem 'rails-controller-testing', '1.0.2'
   gem 'minitest-reporters',       '1.1.14'
   gem 'guard',                    '2.13.0'
   gem 'guard-minitest',           '2.4.4'
-    gem 'minitest-rails-capybara'
-      gem 'selenium-webdriver'
-       gem "chromedriver-helper"
-        gem 'shoulda', '~> 3.5'
- gem 'shoulda-matchers', '~> 2.0'
-gem "capybara-webkit"
-gem 'geckodriver-helper'
+  gem 'minitest-rails-capybara'
+  gem 'selenium-webdriver'
+  gem "chromedriver-helper"
+  gem 'shoulda', '~> 3.5'
+  gem 'shoulda-matchers', '~> 2.0'
+  gem "capybara-webkit"
+  gem 'geckodriver-helper'
 end
 
 # Use Redis adapter to run Action Cable in production
@@ -64,6 +64,12 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
+group :production do
+  gem 'pg', '0.20.0'
+end
+
+
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
