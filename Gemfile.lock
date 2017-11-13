@@ -155,6 +155,7 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    pg (0.20.0)
     pry (0.11.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -275,6 +276,7 @@ DEPENDENCIES
   minitest-rails-capybara
   minitest-reporters (= 1.1.14)
   money
+  pg (= 0.20.0)
   puma
   rails (>= 5.0.0.beta3)
   rails-controller-testing (= 1.0.2)
