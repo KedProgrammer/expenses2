@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class ExpensesControllerTest < ActionDispatch::IntegrationTest
+	setup do
+		@expense = expenses(:one)
 
+	end
 
 	test "should get expenses" do
 		get expenses_path
@@ -29,7 +32,8 @@ class ExpensesControllerTest < ActionDispatch::IntegrationTest
 
 	end
 
-	test "should reate expense" do
+	test "should create expense" do
+		get expenses_path
 		assert_difference 'Expense.count', 1 do
 		post expenses_path ,xhr: true, params: { expense: {
 										concept: "prueba",
@@ -40,6 +44,26 @@ class ExpensesControllerTest < ActionDispatch::IntegrationTest
 		end
 	end
 
+
+
+	test "should delete expense" do
+		get expenses_path
+		assert_difference 'Expense.count', -1 do
+		delete expense_path(@expense), xhr:true , params: {expense: @expense}
+		end	
+	end
+
+	test "shold edit expense" do
+		get expenses_path
+		patch expense_path(@expense), xhr:true, params: {expense: {
+												concept: "edit",
+												amount: 540,
+												date: "2017-11-03",
+												categorye_id: 1,
+												type_id: 1
+
+			}}
+	end
 
 
 end
