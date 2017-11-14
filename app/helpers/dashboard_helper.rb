@@ -12,7 +12,7 @@ module DashboardHelper
 			total_month[c.id - 1]["days"] = []
 			days.times do |d|
 				sum = 0
-				aux = Expense.where("type_id = ? AND cast(strftime('%d', date) as int) = ?  AND cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?  ", c.id, d+1 , month , year )
+				aux = Expense.where("type_id = ? AND extract(day from date) = ?  AND extract(month from date) = ? AND extract(year from date) = ?  ", c.id, d+1 , month , year )
 				if !aux.any?
 					total_month[c.id - 1]["days"][d] = {"day" => "0#{d + 1}" , "amount" => sum}
 				else
@@ -41,7 +41,7 @@ module DashboardHelper
 			6.times do |d|
 				date = Date.today
 				sum = 0
-				aux = Expense.where("type_id = ?  AND cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?  ", c.id , month - d , year )
+				aux = Expense.where("type_id = ?  AND extract(month from date) = ? AND extract(year from date) = ?  ", c.id , month - d , year )
 				if !aux.any?
 					date = date - d*29
 					total_months[c.id - 1]["months"][d] = {"month" => "#{date.strftime('%b')}"  , "amount" => sum}
@@ -104,7 +104,7 @@ module DashboardHelper
 			total_acumulate[m]["days"] = []
 			days.times do |d |
 				sum = 0
-				aux = Expense.where(" cast(strftime('%d', date) as int) = ?  AND cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?  ", d+1 , month , year )
+				aux = Expense.where(" extract(day from date) = ?  AND extract(month from date) = ? AND extract(year from date) = ?  ", d+1 , month , year )
 				
 				if !aux.any?
 					total_acumulate[m]["days"][d] = {"day" => d + 1, "amount" => 0}
@@ -123,10 +123,10 @@ module DashboardHelper
 
  	def get_data
  		acumulates = {}
- 		acumulates["day"] = sum(Expense.where("cast(strftime('%d', date) as int) = ?  AND cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?  ", Date.today.mday , Date.today.mon , Date.today.year ))
- 		acumulates["last-day"] = sum(Expense.where("cast(strftime('%d', date) as int) = ?  AND cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?  ", Date.today.mday - 1 , Date.today.mon , Date.today.year ))
- 		acumulates["this-month"] = sum(Expense.where("cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?  ", Date.today.mon , Date.today.year ))
- 		acumulates["last-month"] = sum(Expense.where("cast(strftime('%m', date) as int) = ? AND cast(strftime('%Y', date) as int) = ?  ", Date.today.mon  - 1, Date.today.year ))
+ 		acumulates["day"] = sum(Expense.where("extract(day from date) = ? AND extract(month from date) = ? AND extract(year from date) = ?  ", Date.today.mday , Date.today.mon , Date.today.year ))
+ 		acumulates["last-day"] = sum(Expense.where("extract(day from date) = ? AND extract(month from date) = ? AND extract(year from date) = ?  ", Date.today.mday - 1 , Date.today.mon , Date.today.year ))
+ 		acumulates["this-month"] = sum(Expense.where("extract(month from date) = ? AND extract(year from date) = ?  ", Date.today.mon , Date.today.year ))
+ 		acumulates["last-month"] = sum(Expense.where("extract(month from date) = ? AND extract(year from date) = ? ", Date.today.mon  - 1, Date.today.year ))
  		acumulates
  		
  	end

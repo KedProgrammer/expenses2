@@ -29,6 +29,7 @@ gem 'money'
 gem 'faker',          '1.7.3'
 gem 'capybara', '~> 2.13'
 
+
 group :test do
   gem 'rails-controller-testing', '1.0.2'
   gem 'minitest-reporters',       '1.1.14'
@@ -54,7 +55,7 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-    gem 'sqlite3'
+    gem 'pg', '0.20.0'
 
 end
 
