@@ -2,7 +2,8 @@ services:
   - postgresql
 
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c "create user shiriux with password '4091';" -U postgres
+  
 
 language: ruby
 rvm:
