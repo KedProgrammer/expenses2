@@ -1,8 +1,11 @@
 <% if @expense.errors.any? %>
-	$('.errors').remove()
-	$('.container-fluid').prepend("<%= j (render 'errors') %>")
+	$('.errors').remove();
+	$('.container-fluid').prepend("<%= j (render 'errors') %>");
 <% else %>
+	$('.fixed').remove();
 	$('.index').html("<%= j (render 'index') %>");
-	$('tbody').html("<%= j (render 'updatedform') %>")
-	$('#exampleModal').modal('hide')
+	$('tbody').html("<%= j (render 'updatedform') %>");
+	$('#exampleModal').modal('hide');
+	$('.flash').append('<div class="fixed alert alert-success alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close">×</a><%= flash[:success]%></div>');
+	$('.fixed').slideDown(400);
 <% end %>

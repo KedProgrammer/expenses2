@@ -86,4 +86,15 @@ background-color: #f5f5f5;
 cursor: pointer;
 }
 
+.fixed{
+  
+    position: fixed;
+    width: 300px;
+    z-index: 1;
+    height: 50px;
+    left: 70%;
+    bottom: 90%;
+    display: none;
+
+}
 

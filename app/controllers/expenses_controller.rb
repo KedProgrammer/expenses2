@@ -32,6 +32,9 @@ before_action :filter, :months,  only: :index
    
       @expenses = filter2
       @dates =  get_dates(@expenses)
+      respond_to do |format|
+        format.js {  flash[:success] = "Expense creado con exito" }
+        end
   	end
 
   end
@@ -124,6 +127,9 @@ before_action :filter, :months,  only: :index
     @today = Date.today
     @expenses = filter2
     @dates =  get_dates(@expenses)
+      respond_to do |format|
+            format.js {  flash[:success] = "Expense editado con exito" }
+        end
     end
   end
 
@@ -134,6 +140,9 @@ before_action :filter, :months,  only: :index
     @today = Date.today
     @expenses = filter2
     @dates =  get_dates(@expenses)
+     respond_to do |format|
+            format.js {  flash[:success] = "Expense eliminado con exito" }
+        end
   end
 
 
