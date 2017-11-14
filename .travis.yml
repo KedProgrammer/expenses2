@@ -1,4 +1,8 @@
 language: ruby
 rvm:
  - 2.2
- 
+
+
+
+ before_script:
+  - psql -c "CREATE USER shiriux WITH PASSWORD '4091';" -U postgres
