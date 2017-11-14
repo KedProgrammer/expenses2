@@ -36,7 +36,7 @@ group :test do
   gem 'guard',                    '2.13.0'
   gem 'guard-minitest',           '2.4.4'
   gem 'minitest-rails-capybara'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 2.53.4'
   gem "chromedriver-helper"
   gem 'shoulda', '~> 3.5'
   gem 'shoulda-matchers', '~> 2.0'
