@@ -1,5 +1,5 @@
 $('.fixed').remove();
 $('.index').html("<%= j (render 'index') %>");
 $('tbody').html("<%= j (render 'updatedform') %>")
-$('.flash').append('<div class="fixed alert alert-success alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close">×</a><%= flash[:success]%></div>');
+$('#bs-example-navbar-collapse-1').append('<div class="fixed alert alert-success alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close">×</a><%= flash[:success]%></div>');
 $('.fixed').slideDown(400);
