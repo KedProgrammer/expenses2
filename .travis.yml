@@ -5,6 +5,8 @@ before_script:
   - psql -c "create user shiriux with password '4091';" -U postgres
   - psql -c "alter user shiriux createdb;" -U postgres
   - psql -c 'create database shiriux_development owner shiriux;' -U postgres
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
 
 language: ruby
 rvm:
