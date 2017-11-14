@@ -4,7 +4,7 @@
       url: "/" , 
       dataType: 'script',
       type: 'GET'
-    })
+    });
   })
 
  
